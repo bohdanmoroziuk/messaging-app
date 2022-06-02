@@ -1,20 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+
+import styles from './App.styles';
 
 export default function App() {
+  const renderMessageList = () => (
+    <View style={styles.messageList}></View>
+  );
+
+  const renderInputMethodEditor = () => (
+    <View style={styles.inputMethodEditor}></View>
+  );
+
+  const renderToolbar = () => (
+    <View style={styles.toolbar}></View>
+  );
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {renderMessageList()}
+      {renderToolbar()}
+      {renderInputMethodEditor()}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
