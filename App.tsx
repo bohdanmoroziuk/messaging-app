@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 
+import Status from 'src/components/Status';
+
 import styles from './App.styles';
 
 export default function App() {
@@ -18,6 +20,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Status />
       {renderMessageList()}
       {renderToolbar()}
       {renderInputMethodEditor()}
