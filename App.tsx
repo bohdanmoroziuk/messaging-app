@@ -1,6 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Alert } from 'react-native';
+import {
+  Text,
+  View,
+  Alert,
+  Image,
+  TouchableHighlight,
+  BackHandler,
+} from 'react-native';
 
 import Status from 'src/components/Status';
 import MessageList from 'src/components/MessageList';
@@ -11,8 +18,9 @@ import {
   createLocationMessage,
 } from 'src/utils/messages';
 
+import { ImageMessage, Message } from 'src/types';
+
 import styles from './App.styles';
-import { Message } from 'src/types';
 
 export default function App() {
   const [messages, setMessages] = useState([
@@ -24,6 +32,34 @@ export default function App() {
       longitude: -122.4324,
     }),
   ]);
+
+  const [fullscreenImageId, setFullscreenImageId] = useState<number | null>(null);
+  
+  const dismissFullscreenImage = () => {
+    setFullscreenImageId(null);
+  };
+
+  const renderFullscreenImage = () => {
+    if (!fullscreenImageId) return null;
+
+    const image = messages.find((message) => message.id === fullscreenImageId);
+
+    if (!image) return null;
+
+    const { uri } = image as ImageMessage;
+
+    return (
+      <TouchableHighlight
+        style={styles.fullscreenOverlay}
+        onPress={dismissFullscreenImage}
+      >
+        <Image
+          style={styles.fullscreenImage}
+          source={{ uri }}
+        />
+      </TouchableHighlight>
+    );
+  };
 
   const handlePressMessage = (message: Message) => {
     switch (message.type) {
@@ -45,6 +81,10 @@ export default function App() {
             },
           ],
         );
+        break;
+      case 'image':
+        setFullscreenImageId(message.id);
+        break;
       default: 
         break;
     }
@@ -67,12 +107,28 @@ export default function App() {
     <View style={styles.toolbar}></View>
   );
 
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (fullscreenImageId) {
+        dismissFullscreenImage();
+        return true;
+      }
+
+      return false;
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Status />
       {renderMessageList()}
       {renderToolbar()}
       {renderInputMethodEditor()}
+      {renderFullscreenImage()}
     </View>
   );
 }

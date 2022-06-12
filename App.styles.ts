@@ -18,4 +18,13 @@ export default StyleSheet.create({
     borderTopColor: 'rgba(0,0,0,0.04)',
     backgroundColor: 'white',
   },
+  fullscreenOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'black',
+    zIndex: 2,
+  },
+  fullscreenImage: {
+    flex: 1,
+    resizeMode: 'contain',
+  },
 });
