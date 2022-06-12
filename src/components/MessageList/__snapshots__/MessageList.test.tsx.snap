@@ -1,0 +1,401 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageList renders successfully when the message list contains items 1`] = `
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "id": 1,
+        "type": "image",
+        "uri": "https://unsplash.it/300/300",
+      },
+      Object {
+        "id": 2,
+        "text": "Hello",
+        "type": "text",
+      },
+      Object {
+        "id": 3,
+        "text": "World",
+        "type": "text",
+      },
+      Object {
+        "id": 4,
+        "location": Object {
+          "latitude": 37.78825,
+          "longitude": -122.4324,
+        },
+        "type": "location",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  invertStickyHeaders={true}
+  inverted={true}
+  keyExtractor={[Function]}
+  keyboardShouldPersistTaps="handled"
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  style={
+    Array [
+      Object {
+        "transform": Array [
+          Object {
+            "scaleY": -1,
+          },
+        ],
+      },
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      },
+    ]
+  }
+  viewabilityConfigCallbackPairs={Array []}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "flexDirection": "column-reverse",
+          },
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginBottom": 4,
+            "marginLeft": 60,
+            "marginRight": 10,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://unsplash.it/300/300",
+              }
+            }
+            style={
+              Object {
+                "borderRadius": 10,
+                "height": 150,
+                "width": 150,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "flexDirection": "column-reverse",
+          },
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginBottom": 4,
+            "marginLeft": 60,
+            "marginRight": 10,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(16, 135, 255)",
+                "borderRadius": 20,
+                "paddingHorizontal": 10,
+                "paddingVertical": 5,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": 18,
+                }
+              }
+            >
+              Hello
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "flexDirection": "column-reverse",
+          },
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginBottom": 4,
+            "marginLeft": 60,
+            "marginRight": 10,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(16, 135, 255)",
+                "borderRadius": 20,
+                "paddingHorizontal": 10,
+                "paddingVertical": 5,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": 18,
+                }
+              }
+            >
+              World
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "flexDirection": "column-reverse",
+          },
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginBottom": 4,
+            "marginLeft": 60,
+            "marginRight": 10,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <AIRMap
+            handlePanDrag={false}
+            initialRegion={
+              Object {
+                "latitude": 37.78825,
+                "latitudeDelta": 0.08,
+                "longitude": -122.4324,
+                "longitudeDelta": 0.04,
+              }
+            }
+            onChange={[Function]}
+            onLayout={[Function]}
+            onMapReady={[Function]}
+            onMarkerPress={[Function]}
+            region={null}
+            style={
+              Object {
+                "borderRadius": 10,
+                "height": 250,
+                "width": 250,
+              }
+            }
+          >
+            <AIRMapMarker
+              coordinate={
+                Object {
+                  "latitude": 37.78825,
+                  "longitude": -122.4324,
+                }
+              }
+              onPress={[Function]}
+              stopPropagation={false}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "position": "absolute",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </AIRMap>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`MessageList renders successfully when the message list is empty 1`] = `
+<RCTScrollView
+  data={Array []}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  invertStickyHeaders={true}
+  inverted={true}
+  keyExtractor={[Function]}
+  keyboardShouldPersistTaps="handled"
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  style={
+    Array [
+      Object {
+        "transform": Array [
+          Object {
+            "scaleY": -1,
+          },
+        ],
+      },
+      Object {
+        "flex": 1,
+        "overflow": "visible",
+      },
+    ]
+  }
+  viewabilityConfigCallbackPairs={Array []}
+>
+  <View />
+</RCTScrollView>
+`;
