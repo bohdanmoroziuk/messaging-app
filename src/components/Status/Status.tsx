@@ -1,28 +1,13 @@
-import { FunctionComponent, useState, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { StatusBar, Text, View, Platform } from 'react-native';
-import Constants from 'expo-constants';
-import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
+import useNetInfo from 'src/hooks/useNetInfo';
 
 import styles from './Status.styles';
 
 export interface StatusProps {}
 
 export const Status: FunctionComponent<StatusProps> = () => {
-  const [isConnected, setIsConnected] = useState<boolean | null>(true);
-
-  const handleChange = ({ isConnected }: NetInfoState) => {
-    setIsConnected(isConnected);
-  };
-
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(handleChange);
-
-    return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    NetInfo.fetch().then(handleChange);
-  }, []);
+  const { isConnected } = useNetInfo();
 
   const backgroundColor = isConnected ? 'white' : 'red';
 
