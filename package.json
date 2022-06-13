@@ -8,8 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll",
-    "test:final": "jest --verbose --coverage"
+    "test:unit": "jest --watchAll",
+    "test:unit:coverage": "jest --watchAll --coverage",
+    "test:unit:final": "jest --verbose --coverage"
   },
   "dependencies": {
     "@react-native-community/netinfo": "8.2.0",
