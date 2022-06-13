@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import {
-  Text,
   View,
   Alert,
   Image,
   TouchableHighlight,
-  BackHandler,
 } from 'react-native';
 
 import Status from 'src/components/Status';
 import MessageList from 'src/components/MessageList';
+
+import useBackHandler from 'src/hooks/useBackHandler';
 
 import {
   createTextMessage,
@@ -107,20 +106,16 @@ export default function App() {
     <View style={styles.toolbar}></View>
   );
 
-  useEffect(() => {
-    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (fullscreenImageId) {
-        dismissFullscreenImage();
-        return true;
-      }
+  const handleBackPress = () => {
+    if (fullscreenImageId) {
+      dismissFullscreenImage();
+      return true;
+    }
 
-      return false;
-    });
+    return false;
+  };
 
-    return () => {
-      subscription.remove();
-    };
-  }, []);
+  useBackHandler(handleBackPress);
 
   return (
     <View style={styles.container}>
