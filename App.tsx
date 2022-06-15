@@ -34,7 +34,28 @@ export default function App() {
   ]);
 
   const [fullscreenImageId, setFullscreenImageId] = useState<number | null>(null);
+
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleChangeFocus = (isFocused: boolean) => {
+    setIsInputFocused(isFocused);
+  };
   
+  const handlePressCamera = () => {
+
+  };
+
+  const handlePressLocation = () => {
+
+  };
+
+  const handleSubmit = (text: string) => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      createTextMessage(text),
+    ]);
+  };
+
   const dismissFullscreenImage = () => {
     setFullscreenImageId(null);
   };
@@ -83,6 +104,7 @@ export default function App() {
         );
         break;
       case 'image':
+        setIsInputFocused(false);
         setFullscreenImageId(message.id);
         break;
       default: 
@@ -106,11 +128,11 @@ export default function App() {
   const renderToolbar = () => (
     <View style={styles.toolbar}>
       <Toolbar
-        isFocused={false}
-        onChangeFocus={() => {}}
-        onSubmit={() => {}}
-        onPressCamera={() => {}}
-        onPressLocation={() => {}}
+        isFocused={isInputFocused}
+        onChangeFocus={handleChangeFocus}
+        onSubmit={handleSubmit}
+        onPressCamera={handlePressCamera}
+        onPressLocation={handlePressLocation}
       />
     </View>
   );
