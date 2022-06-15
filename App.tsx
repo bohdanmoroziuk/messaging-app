@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import Status from 'src/components/Status';
+import Toolbar from 'src/components/Toolbar';
 import MessageList from 'src/components/MessageList';
 
 import useBackHandler from 'src/hooks/useBackHandler';
@@ -103,7 +104,15 @@ export default function App() {
   );
 
   const renderToolbar = () => (
-    <View style={styles.toolbar}></View>
+    <View style={styles.toolbar}>
+      <Toolbar
+        isFocused={false}
+        onChangeFocus={() => {}}
+        onSubmit={() => {}}
+        onPressCamera={() => {}}
+        onPressLocation={() => {}}
+      />
+    </View>
   );
 
   const handleBackPress = () => {
