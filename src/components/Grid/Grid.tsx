@@ -9,10 +9,13 @@ export interface GridRenderItemInfo<T> {
 
 export type GridRenderItem<T> = (info: GridRenderItemInfo<T>) => ReturnType<ListRenderItem<T>>;
 
+export type GridKeyExtractor<T> = (item: T) => string;
+
 export interface GridProps<T> {
   data: T[];
   numColumns?: number;
   itemMargin?: number;
+  keyExtractor: GridKeyExtractor<T>;
   renderItem: GridRenderItem<T>;
 }
 
@@ -20,6 +23,7 @@ export const Grid = <T,>({
   data,
   numColumns = 4,
   itemMargin = StyleSheet.hairlineWidth,
+  keyExtractor,
   renderItem,
 }: GridProps<T>) => {
   const renderGridItem: ListRenderItem<T> = ({ item, index }) => {
@@ -41,6 +45,7 @@ export const Grid = <T,>({
       data={data}
       numColumns={numColumns}
       renderItem={renderGridItem}
+      keyExtractor={keyExtractor}
     />
   );
 };
