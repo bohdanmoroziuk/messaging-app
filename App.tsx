@@ -9,6 +9,7 @@ import {
 import Status from 'src/components/Status';
 import Toolbar from 'src/components/Toolbar';
 import MessageList from 'src/components/MessageList';
+import ImageGrid from 'src/components/ImageGrid';
 
 import useBackHandler from 'src/hooks/useBackHandler';
 
@@ -122,7 +123,9 @@ export default function App() {
   );
 
   const renderInputMethodEditor = () => (
-    <View style={styles.inputMethodEditor}></View>
+    <View style={styles.inputMethodEditor}>
+      <ImageGrid onPressImage={() => {}} />
+    </View>
   );
 
   const renderToolbar = () => (
