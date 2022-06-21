@@ -50,10 +50,17 @@ export default function App() {
 
   };
 
+  const handlePressImage = (uri: string) => {
+    setMessages((prevMessages) => [
+      createImageMessage(uri),
+      ...prevMessages,
+    ]);
+  };
+
   const handleSubmit = (text: string) => {
     setMessages((prevMessages) => [
-      ...prevMessages,
       createTextMessage(text),
+      ...prevMessages,
     ]);
   };
 
@@ -124,7 +131,7 @@ export default function App() {
 
   const renderInputMethodEditor = () => (
     <View style={styles.inputMethodEditor}>
-      <ImageGrid onPressImage={() => {}} />
+      <ImageGrid onPressImage={handlePressImage} />
     </View>
   );
 

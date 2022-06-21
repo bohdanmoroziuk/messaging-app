@@ -11,7 +11,7 @@ export interface ImageGridItem {
 }
 
 export interface ImageGridProps {
-  onPressImage: () => void;
+  onPressImage: (uri: string) => void;
 }
 
 const keyExtractor = ({ uri }: ImageGridItem) => uri;
@@ -31,15 +31,28 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
     marginLeft,
   }) => {
     const style = {
-      flex: 1,
       width: size,
       height: size,
       marginTop,
       marginLeft,
     };
 
+    const handlePress = () => {
+      onPressImage(item.uri);
+    };
+
     return (
-      <Image source={{ uri: item.uri }} style={style} />
+      <TouchableOpacity
+        key={item.uri}
+        style={style}
+        activeOpacity={0.75}
+        onPress={handlePress}
+      >
+        <Image
+          source={{ uri: item.uri }}
+          style={{ flex: 1 }}
+        />
+      </TouchableOpacity>
     );
   }; 
 
