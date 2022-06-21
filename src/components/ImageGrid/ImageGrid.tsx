@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useEffect } from 'react';
+import { FunctionComponent, useState, useEffect, useRef } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 // @ts-ignore
 import CameraRoll from 'expo-cameraroll';
@@ -21,6 +21,9 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
 }) => {
   const [images, setImages] = useState<ImageGridItem[]>([]);
 
+  const isLoading = useRef(false);
+  const cursor = useRef<string | null>(null);
+
   const renderItem: GridRenderItem<ImageGridItem> = ({
     item,
     size,
@@ -40,7 +43,11 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
     );
   }; 
 
-  const getImages = async () => {
+  const getImages = async (after: string) => {
+    if (isLoading.current) return;
+
+    isLoading.current = true;
+
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
     if (status !== Permissions.PermissionStatus.GRANTED) {
@@ -48,19 +55,32 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
       return;
     }
 
-    const { edges } = await CameraRoll.getPhotos({
+    const { edges, page_info: { has_next_page, end_cursor } } = await CameraRoll.getPhotos({
       first: 20,
+      after,
       assertType: 'Photos',
     });
 
     // @ts-ignore
     const images = edges.map((edge) => edge.node.image);
 
-    setImages(images);
+    setImages((prevImages) => [
+      ...prevImages,
+      ...images,
+    ]);
+
+    isLoading.current = false;
+    cursor.current = has_next_page ? end_cursor : null;
+  };
+
+  const getNextImages = async () => {
+    if (!cursor.current) return;
+
+    getImages(cursor.current);
   };
 
   useEffect(() => {
-    getImages();
+    getImages('0');
   }, []);
 
   return (
@@ -69,6 +89,7 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
       renderItem={renderItem}
       itemMargin={2}
       keyExtractor={keyExtractor}
+      onEndReached={getNextImages}
     />
   );
 };

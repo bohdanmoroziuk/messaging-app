@@ -1,4 +1,4 @@
-import { FlatList, Dimensions, PixelRatio, StyleSheet, ListRenderItem } from 'react-native';
+import { FlatList, Dimensions, PixelRatio, StyleSheet, ListRenderItem, FlatListProps } from 'react-native';
 
 export interface GridRenderItemInfo<T> {
   item: T;
@@ -11,7 +11,7 @@ export type GridRenderItem<T> = (info: GridRenderItemInfo<T>) => ReturnType<List
 
 export type GridKeyExtractor<T> = (item: T) => string;
 
-export interface GridProps<T> {
+export interface GridProps<T> extends Omit<FlatListProps<T>, 'data' | 'renderItem'> {
   data: T[];
   numColumns?: number;
   itemMargin?: number;
@@ -25,6 +25,7 @@ export const Grid = <T,>({
   itemMargin = StyleSheet.hairlineWidth,
   keyExtractor,
   renderItem,
+  ...props
 }: GridProps<T>) => {
   const renderGridItem: ListRenderItem<T> = ({ item, index }) => {
     const { width } = Dimensions.get('window');
@@ -46,6 +47,7 @@ export const Grid = <T,>({
       numColumns={numColumns}
       renderItem={renderGridItem}
       keyExtractor={keyExtractor}
+      {...props}
     />
   );
 };
