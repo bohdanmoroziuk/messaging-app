@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 // @ts-ignore
 import CameraRoll from 'expo-cameraroll';
@@ -19,12 +19,7 @@ const keyExtractor = ({ uri }: ImageGridItem) => uri;
 export const ImageGrid: FunctionComponent<ImageGridProps> = ({
   onPressImage,
 }) => {
-  const images = [
-    { uri: 'https://picsum.photos/600/600?image=10' },
-    { uri: 'https://picsum.photos/600/600?image=20' },
-    { uri: 'https://picsum.photos/600/600?image=30' },
-    { uri: 'https://picsum.photos/600/600?image=40' },
-  ];
+  const [images, setImages] = useState<ImageGridItem[]>([]);
 
   const renderItem: GridRenderItem<ImageGridItem> = ({
     item,
@@ -45,10 +40,34 @@ export const ImageGrid: FunctionComponent<ImageGridProps> = ({
     );
   }; 
 
+  const getImages = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+    if (status !== Permissions.PermissionStatus.GRANTED) {
+      console.log('Camera roll permission denied.');
+      return;
+    }
+
+    const { edges } = await CameraRoll.getPhotos({
+      first: 20,
+      assertType: 'Photos',
+    });
+
+    // @ts-ignore
+    const images = edges.map((edge) => edge.node.image);
+
+    setImages(images);
+  };
+
+  useEffect(() => {
+    getImages();
+  }, []);
+
   return (
     <Grid<ImageGridItem>
       data={images}
       renderItem={renderItem}
+      itemMargin={2}
       keyExtractor={keyExtractor}
     />
   );
