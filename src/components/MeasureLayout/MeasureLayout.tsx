@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { View, Platform, LayoutChangeEvent, LayoutRectangle } from 'react-native';
 import Constants from 'expo-constants';
 
-import styles from './MeasureLayout.styles';
+import styles from 'src/components/MeasureLayout/MeasureLayout.styles';
 
 export interface MeasureLayoutProps {
   content: (layout: LayoutRectangle) => any;
