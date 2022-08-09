@@ -10,6 +10,9 @@ import Status from 'src/components/Status';
 import Toolbar from 'src/components/Toolbar';
 import MessageList from 'src/components/MessageList';
 import ImageGrid from 'src/components/ImageGrid';
+import KeyboardState from 'src/components/KeyboardState';
+import MeasureLayout from 'src/components/MeasureLayout';
+import MessagingContainer, { InputMethod } from 'src/components/MessagingContainer';
 
 import useBackHandler from 'src/hooks/useBackHandler';
 
@@ -38,12 +41,15 @@ export default function App() {
 
   const [isInputFocused, setIsInputFocused] = useState(false);
 
+  const [inputMethod, setInputMethod] = useState<InputMethod>('none');
+
   const handleChangeFocus = (isFocused: boolean) => {
     setIsInputFocused(isFocused);
   };
   
   const handlePressCamera = () => {
-
+    setIsInputFocused(false);
+    setInputMethod('custom');
   };
 
   const handlePressLocation = () => {
@@ -161,9 +167,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Status />
-      {renderMessageList()}
-      {renderToolbar()}
-      {renderInputMethodEditor()}
+      <MeasureLayout
+        content={(layout) => (
+          <KeyboardState
+            layout={layout}
+            content={(info) => (
+              <MessagingContainer
+                {...info}
+                inputMethod={inputMethod}
+                onChangeInputMethod={setInputMethod}
+                renderInputMethodEditor={renderInputMethodEditor}
+              />
+            )}
+          >
+            {renderMessageList()}
+            {renderToolbar()}
+          </KeyboardState>
+        )}
+      />
       {renderFullscreenImage()}
     </View>
   );
